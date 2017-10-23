@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>htc_vive_teleop_stuff</name>
+  <version>0.0.0</version>
+  <description>The htc_vive_teleop_stuff package contains code to expose
+    the HTC Vive system in ROS. It exposes a TF tree and Joy topics with
+    the controller events.</description>
+
+  <maintainer email="Sammy.Pfeiffer@student.uts.edu.au">Sammy Pfeiffer</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>tf2</build_export_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>tf2</exec_depend>
+
+</package>

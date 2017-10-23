@@ -1,0 +1,4 @@
+<launch>
+	<include file="$(find htc_vive_teleop_stuff)/launch/htc_vive_tf_and_joy.launch"/>
+	<include file="$(find htc_vive_teleop_stuff)/launch/controllers_to_posestamped.launch"/>
+</launch>

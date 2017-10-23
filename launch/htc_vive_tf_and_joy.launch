@@ -1,0 +1,6 @@
+<launch>
+  <node name="vive_tf_and_joy" pkg="htc_vive_teleop_stuff" type="vive_tf_and_joy.py" output="screen">
+  	<env name="LD_LIBRARY_PATH"
+  		value="$(env HOME)/.steam/steam/steamapps/common/SteamVR/bin/linux64:$(env HOME)/.steam/steam/steamapps/common/tools/bin/linux64:$(env LD_LIBRARY_PATH)" />
+  </node>
+</launch>
