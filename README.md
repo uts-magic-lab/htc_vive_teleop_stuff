@@ -72,7 +72,7 @@ This image pertains to HTC from [this user guide](http://www.htc.com/managed-ass
 Note that the system button can't be read, if you press it, the controllers 
 stop reporting their button presses. If you press it again, they will report again.
 
-You can find another launch file called `vive_tf_joy_and_ps.launch` which provides two topics:
+You can find another launch file called `vive_tf_joy_and_ps.launch` which in addition provides two topics:
 ```
 Topic                               Type                        Rate
 /left_controller_as_posestamped     geometry_msgs/PoseStamped   30Hz
@@ -89,7 +89,8 @@ That takes a TF frame that you want published as a `geometry_msgs/PoseStamped` i
 whatever rate you want.
 
 ## To run PR2 Teleop demo
-
+*TODO*
+```
 sudo apt-get install libnlopt-dev
 sudo apt-get install ros-kinetic-moveit-ros
 sudo apt-get install swig
@@ -100,6 +101,7 @@ git checkout python_wrapper_swig_based
 
 cd ../..
 catkin_make
+```
 
 
 
