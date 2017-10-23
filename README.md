@@ -67,7 +67,7 @@ buttons: [0, 0, 0, 0, 0]
 
 ![controllers.png](controllers.png)
 
-This image pertains to Valve from [this tutorial](https://support.steampowered.com/kb_article.php?ref=2001-UXCM-4439).
+This image pertains to HTC from [this user guide](http://www.htc.com/managed-assets/shared/desktop/vive/Vive_PRE_User_Guide.pdf).
 
 Note that the system button can't be read, if you press it, the controllers 
 stop reporting their button presses. If you press it again, they will report again.
