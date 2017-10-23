@@ -238,10 +238,11 @@ if __name__ == '__main__':
             poses)
 
         now = rospy.Time.now()
+        transforms = []
         # Hmd is always 0
         matrix = poses[0].mDeviceToAbsoluteTracking
         hmd_pose = from_matrix_to_transform(matrix, now, "world", "hmd")
-        br.sendTransform(hmd_pose)
+        transforms.append(hmd_pose)
 
         # print("Hmd:")
         # pp.pprint(hmd_pose)
@@ -252,7 +253,7 @@ if __name__ == '__main__':
                                                    now,
                                                    "world",
                                                    "lighthouse_" + str(idx))
-            br.sendTransform(lhouse_pose)
+            transforms.append(lhouse_pose)
             # print("Lighthouse #" + str(idx) + " :")
             # pp.pprint(lhouse_pose)
 
@@ -262,7 +263,7 @@ if __name__ == '__main__':
                                                  now,
                                                  "world",
                                                  "left_controller")
-            br.sendTransform(left_pose)
+            transforms.append(left_pose)
             result, pControllerState = vrsystem.getControllerState(left_id)
             new_msg, j = from_controller_to_joy(prev_unPacketNum_left,
                                                 pControllerState,
@@ -281,7 +282,7 @@ if __name__ == '__main__':
                                                   now,
                                                   "world",
                                                   "right_controller")
-            br.sendTransform(right_pose)
+            transforms.append(right_pose)
             result, pControllerState = vrsystem.getControllerState(right_id)
             new_msg, j = from_controller_to_joy(prev_unPacketNum_right,
                                                 pControllerState,
@@ -293,5 +294,7 @@ if __name__ == '__main__':
             # print("Right controller:")
             # # pp.pprint(d)
             # pp.pprint(right_pose)
+
+        br.sendTransform(transforms)
 
     openvr.shutdown()

@@ -14,7 +14,7 @@ sudo apt-get install nvidia-384 nvidia-384-dev
 
 Reboot. Hope to not have destroyed your X.
 
-Install Steam.
+Install Steam (about 1GB).
 
 ```bash
 # Probably not necessary
@@ -25,10 +25,10 @@ sudo apt-get install steam
 
 Open Steam, wait for it to update, login.
 
-Go to Steam > Settings and add Beta participation. It will reboot Steam.
+Go to `Steam > Settings` and add Beta participation. It will reboot Steam.
 
-Now we want to install SteamVR, but in beta mode, so look for SteamVR and right click
-Properties, BETA tab, and add yourself to the beta. Now install.
+Now we want to install SteamVR, but in beta mode, so look for SteamVR somewhere in the client (for me it's in `Library` already, you may find it by clicking [this link](steam://run/250820)) and right click
+Properties, BETA tab, and add yourself to the beta. Now install. (It's like 1GB).
 
-Execute SteamVR and do the setup.
+Execute SteamVR and do the `room setup`.
 
