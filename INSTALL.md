@@ -24,7 +24,7 @@ Open Steam, wait for it to update, login.
 
 Go to `Steam > Settings` and add Beta participation. It will reboot Steam.
 
-Now we want to install SteamVR, but in beta mode, so look for SteamVR somewhere in the client (for me it's in `Library` already, you may find it by clicking [this link](steam://run/250820) and right click
+Now we want to install SteamVR, but in beta mode, so look for SteamVR somewhere in the client (for me it's in `Library` already, you may find it by going to [this link](https://steamdb.info/app/250820/) and clicking the green icon with the '(cloud) Free') and right click
 Properties, BETA tab, and add yourself to the beta. Now install. (It's like 1GB).
 
 Execute SteamVR and do the `room setup`.
