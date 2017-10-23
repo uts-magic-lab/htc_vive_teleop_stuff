@@ -17,10 +17,7 @@ Reboot. Hope to not have destroyed your X.
 Install Steam (about 1GB).
 
 ```bash
-# Probably not necessary
-sudo add-apt-repository multiverse
 sudo apt-get install steam
-
 ```
 
 Open Steam, wait for it to update, login.
