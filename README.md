@@ -69,8 +69,8 @@ buttons: [0, 0, 0, 0, 0]
 
 This image pertains to HTC from [this user guide](http://www.htc.com/managed-assets/shared/desktop/vive/Vive_PRE_User_Guide.pdf).
 
-Note that the system button can't be read, if you press it, the controllers 
-stop reporting their button presses. If you press it again, they will report again.
+Note that the systme button is unreadable. Pressing it will prevent the other keys from being read. 
+Press it again to resume data transmission.
 
 You can find another launch file called `vive_tf_joy_and_ps.launch` which in addition provides two topics:
 ```
