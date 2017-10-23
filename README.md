@@ -32,7 +32,7 @@ source devel/setup.bash
 ```
 
 ## Run node
-The node you want to run is [vive_tf_and_joy.py](scripts/vive_tf_and_joy.py) which is nicely prepared in a launchfile for you.
+The node you want to run is [scripts/vive_tf_and_joy.py](scripts/vive_tf_and_joy.py) which is nicely prepared in a launchfile for you.
 ```bash
 roslaunch htc_vive_teleop_stuff htc_vive_tf_and_joy.launch
 ```
@@ -42,9 +42,9 @@ You'll see plenty of output (that's the OpenVR initializing) and you may need to
 You'll find the topics:
 ```
 Topic       Type                Rate
-/tf 		tf2_msgs/TFMessage 	250Hz
-/vive_left 	sensor_msgs/Joy 	On Event
-/vive_right sensor_msgs/Joy 	On Event
+/tf         tf2_msgs/TFMessage  250Hz
+/vive_left  sensor_msgs/Joy     On Event
+/vive_right sensor_msgs/Joy     On Event
 ```
 
 The TF tree looks like (there is only one lighthouse because I only had one plugged in):
@@ -72,6 +72,21 @@ This image pertains to HTC from [this user guide](http://www.htc.com/managed-ass
 Note that the system button can't be read, if you press it, the controllers 
 stop reporting their button presses. If you press it again, they will report again.
 
+You can find another launch file called `vive_tf_joy_and_ps.launch` which provides two topics:
+```
+Topic                               Type                        Rate
+/left_controller_as_posestamped     geometry_msgs/PoseStamped   30Hz
+/right_controller_as_posestamped    geometry_msgs/PoseStamped   30Hz
+```
+
+Which are the poses of the controllers in reference to the headset, useful for teleoperation purposes.
+It uses [scripts/frame_as_posestamped.py](scripts/frame_as_posestamped.py) which is a commandline tool:
+```bash
+Usage:
+./frame_as_posestamped.py frame_to_posestamped reference_frame [rate]
+```
+That takes a TF frame that you want published as a `geometry_msgs/PoseStamped` in reference to another frame, with
+whatever rate you want.
 
 ## To run PR2 Teleop demo
 

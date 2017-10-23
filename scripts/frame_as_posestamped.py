@@ -51,23 +51,30 @@ class PublishFrameAsPoseStamped(object):
         ps.header.frame_id = from_frame
         ps.pose = pose
         transform_ok = False
+        min_time_in_between_warns = rospy.Duration(5.0)
+        last_warn = rospy.Time.now() - min_time_in_between_warns
         while not transform_ok and not rospy.is_shutdown():
             try:
                 target_ps = self.tf_l.transformPose(to_frame, ps)
                 transform_ok = True
             except tf.ExtrapolationException as e:
-                rospy.logwarn(
-                    "Exception on transforming pose... trying again \n(" +
-                    str(e) + ")")
+                if rospy.Time.now() > (last_warn + min_time_in_between_warns):
+                    rospy.logwarn(
+                        "Exception on transforming pose... trying again \n(" +
+                        str(e) + ")")
+                    last_warn = rospy.Time.now()
                 rospy.sleep(0.2)
                 ps.header.stamp = self.tf_l.getLatestCommonTime(
                     from_frame, to_frame)
             except tf.LookupException as e:
-                rospy.logwarn(
-                    "Exception on transforming pose... trying again \n(" +
-                    str(e) + ")")
-                rospy.sleep(0.2)
+                if rospy.Time.now() > (last_warn + min_time_in_between_warns):
+                    rospy.logwarn(
+                        "Exception on transforming pose... trying again \n(" +
+                        str(e) + ")")
+                    last_warn = rospy.Time.now()
+                rospy.sleep(1.0)
 
+        target_ps.header.stamp = rospy.Time.now()
         return target_ps
 
     def run(self):
