@@ -41,10 +41,12 @@ You'll see plenty of output (that's the OpenVR initializing) and you may need to
 
 You'll find the topics:
 ```
-Topic       Type                Rate
-/tf         tf2_msgs/TFMessage  250Hz
-/vive_left  sensor_msgs/Joy     On Event
-/vive_right sensor_msgs/Joy     On Event
+Topic                   Type                Rate
+/tf                     tf2_msgs/TFMessage  250Hz
+/vive_left              sensor_msgs/Joy     On Event
+/vive_right             sensor_msgs/Joy     On Event
+/vive_left_vibration    std_msgs/Float64    Listening
+/vive_right_vibration   std_msgs/Float64    Listening
 ```
 
 The TF tree looks like (there is only one lighthouse because I only had one plugged in):
@@ -71,6 +73,8 @@ This image pertains to HTC from [this user guide](http://www.htc.com/managed-ass
 
 Note that the systme button is unreadable. Pressing it will prevent the other keys from being read. 
 Press it again to resume data transmission.
+
+The vibration topics `/vive_SIDE_vibration` expect a `std_msgs/Float64` with a value in between **0.0 and 1.0** representing the strength of the vibration. Every publication makes it vibrate shortly. If you want long vibrations you need to publish multiple times. Note that if you abuse it you may slow down the publication of TF.
 
 You can find another launch file called `vive_tf_joy_and_ps.launch` which in addition provides two topics:
 ```
