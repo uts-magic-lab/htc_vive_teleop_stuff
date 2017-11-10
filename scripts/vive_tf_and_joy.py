@@ -9,6 +9,7 @@ from tf.transformations import euler_from_quaternion, quaternion_from_euler
 import tf2_ros
 from geometry_msgs.msg import TransformStamped
 from sensor_msgs.msg import Joy
+from std_msgs.msg import Float64
 
 """
 Getting poses and buttons into ROS.
@@ -225,6 +226,24 @@ if __name__ == '__main__':
     # Give a bit of time to initialize...
     rospy.sleep(3.0)
     print("Running!")
+
+    # Vibration topic for each controller
+    def vibration_cb(data, controller_id):
+        # strength 0-3999, data contains a float expected
+        # to be in between 0.0 and 1.0
+        if data.data > 1.0:
+            strength = 3999
+        elif data.data < 0.0:
+            strength = 0
+        else:
+            strength = int(data.data * 3999)
+        vrsystem.triggerHapticPulse(controller_id, 0, strength)
+
+    vib_left = rospy.Subscriber('vive_left_vibration', Float64, vibration_cb,
+                                callback_args=left_id, queue_size=1)
+
+    vib_right = rospy.Subscriber('vive_right_vibration', Float64, vibration_cb,
+                                 callback_args=right_id, queue_size=1)
 
     # Internet says the tracking can be up until 250Hz
     r = rospy.Rate(250)
