@@ -27,6 +27,8 @@ catkin_make
 source devel/setup.bash
 ```
 
+You may also want to add [htc_vive_helper](https://github.com/uts-magic-lab/htc_vive_helper) to the workspace if you want to deal in a more user friendly fashion with the HTC Vive controllers.
+
 ## Run node
 The node you want to run is [scripts/vive_tf_and_joy.py](scripts/vive_tf_and_joy.py) which is nicely prepared in a launchfile for you.
 ```bash
