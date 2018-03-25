@@ -52,6 +52,19 @@ def get_lighthouse_ids(vrsys=None):
     return lighthouse_ids
 
 
+def get_generic_tracker_ids(vrsys=None):
+    if vrsys is None:
+        vrsys = openvr.VRSystem()
+    else:
+        vrsys = vrsys
+        generic_tracker_ids = []
+    for i in range(openvr.k_unMaxTrackedDeviceCount):
+        device_class = vrsys.getTrackedDeviceClass(i)
+        if device_class == openvr.TrackedDeviceClass_GenericTracker:
+            generic_tracker_ids.append(i)
+    return generic_tracker_ids
+
+
 def from_matrix_to_pose_dict(matrix):
     pose = {}
     # From http://steamcommunity.com/app/358720/discussions/0/358417008714224220/#c359543542244499836
@@ -209,6 +222,9 @@ if __name__ == '__main__':
     lighthouse_ids = get_lighthouse_ids(vrsystem)
     print("Lighthouse IDs: " + str(lighthouse_ids))
 
+    generic_tracker_ids = get_generic_tracker_ids(vrsystem)
+    print("Generic tracker IDs:" + str(generic_tracker_ids))
+
     poses_t = openvr.TrackedDevicePose_t * openvr.k_unMaxTrackedDeviceCount
     poses = poses_t()
 
@@ -313,6 +329,16 @@ if __name__ == '__main__':
             # print("Right controller:")
             # # pp.pprint(d)
             # pp.pprint(right_pose)
+
+        for idx, _id in enumerate(generic_tracker_ids):
+            matrix = poses[_id].mDeviceToAbsoluteTracking
+            gen_track_pose = from_matrix_to_transform(matrix,
+                                                      now,
+                                                      "world",
+                                                      "generic_tracker_" + str(idx))
+            transforms.append(gen_track_pose)
+            # print("Generic tracker #" + str(idx) + " :")
+            # pp.pprint(gen_track_pose)
 
         br.sendTransform(transforms)
 
