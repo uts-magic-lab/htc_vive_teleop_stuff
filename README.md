@@ -69,8 +69,10 @@ buttons: [0, 0, 0, 0, 0]
 
 This image pertains to HTC from [this user guide](http://www.htc.com/managed-assets/shared/desktop/vive/Vive_PRE_User_Guide.pdf).
 
-Note that the systme button is unreadable. Pressing it will prevent the other keys from being read. 
+Note that the system button is unreadable. Pressing it will prevent the other keys from being read. 
 Press it again to resume data transmission.
+
+To ease interaction with the controllers you may use the [ViveController class](https://github.com/uts-magic-lab/htc_vive_helper#class-to-manage-htc-vive-controllers).
 
 The vibration topics `/vive_SIDE_vibration` expect a `std_msgs/Float64` with a value in between **0.0 and 1.0** representing the strength of the vibration. Every publication makes it vibrate shortly. If you want long vibrations you need to publish multiple times. Note that if you abuse it you may slow down the publication of TF.
 
