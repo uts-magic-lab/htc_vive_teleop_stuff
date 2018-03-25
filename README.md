@@ -4,13 +4,9 @@
 
 First, follow the [INSTALL](INSTALL.md) instructions to get Ubuntu 16.04 and SteamVR (beta) on your machine.
 
-Then get my fork of pyopenvr and install it 
-(it contains a workaround to be able to read the controller's
-state correctly, only necessary until [PR #42](https://github.com/cmbruns/pyopenvr/pull/42) is merged).
+Install pyopenvr (it's not in `package.xml` dependencies as it needs to have HTC Vive SteamVR installed anyways, which is a manual process):
 ```bash
-git clone https://github.com/awesomebytes/pyopenvr
-cd pyopenvr
-sudo python setup.py install
+sudo pip install pyopenvr
 ```
 
 To run my node you'll need to have installed basic ROS TF stuff:
@@ -18,7 +14,6 @@ To run my node you'll need to have installed basic ROS TF stuff:
 ```bash
 # In case you are missing it
 sudo apt-get install ros-kinetic-tf ros-kinetic-tf2*
-
 ```
 
 Then check out and fake-compile (it's all Python) this repository in your catkin workspace:
@@ -27,6 +22,7 @@ mkdir -p vive_ws/src
 cd vive_ws/src
 git clone https://github.com/uts-magic-lab/htc_vive_teleop_stuff
 cd ..
+# or catkin build
 catkin_make
 source devel/setup.bash
 ```
